@@ -3,6 +3,9 @@
   margin-top: 45px;
   margin-bottom: 40px;
   padding-bottom: 41px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 @media screen and (max-width: 934px) {
