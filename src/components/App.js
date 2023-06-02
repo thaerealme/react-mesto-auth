@@ -52,6 +52,7 @@ function App() {
           navigate('/', {replace: true})
         }
       })
+      .catch(err => console.error)
     }
   }, [])
 
@@ -69,14 +70,14 @@ function App() {
     api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
       setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
     })
-      .catch(console.error)
+    .catch(console.error)
   }
 
   function handleCardDelete(card) {
     api.deleteCard(card._id).then((newCard) => {
       setCards((state) => state.filter((c) => c._id !== card._id));
     })
-      .catch(console.error)
+    .catch(console.error)
   }
   function handleUpdateUser(data) {
     api.updateUserInfo(data)
@@ -117,9 +118,7 @@ function App() {
         handleInfoPopupOpen(true)
       }
     })
-    .catch((err) => {
-      console.log(err)
-    })
+    .catch(err => console.error)
   }
 
   function handleLogin({password, email}) {
@@ -134,7 +133,8 @@ function App() {
         setInfoPopupTitle('Что-то пошло не так! Попробуйте ещё раз.')
         handleInfoPopupOpen(true)
       }
-    }).catch(err => console.log(err))
+    })
+    .catch(err => console.error)
   }
 
   function handleQuit () {

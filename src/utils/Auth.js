@@ -30,11 +30,11 @@ class Auth {
       }
     }).then(res => this._checkResponse(res))
   }
-  _checkResponse (res) {
-    if (res.status === 200) {
+  _checkResponse(res) {
+    if (res.ok) {
       return res.json();
     } else {
-      return console.log(res.status);
+      return Promise.reject(`Ошибка: ${res.status}`);
     }
   }
 }
