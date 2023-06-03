@@ -113,7 +113,7 @@ function App() {
         setInfoPopupTitle('Вы успешно зарегистрировались!')
       }
     })
-    .catch((res) => {
+    .catch(() => {
       setInfoPopupIcon(deniedIcon)
       setInfoPopupTitle('Что-то пошло не так! Попробуйте ещё раз.')
     })
