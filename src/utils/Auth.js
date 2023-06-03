@@ -9,7 +9,9 @@ class Auth {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({password, email})
-    }).then(res => {this._checkResponse(res)})
+    }).then((res) => {
+      return this._checkResponse(res);
+    })
   }
 
   login ({password, email}) {
@@ -19,7 +21,9 @@ class Auth {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({password, email})
-    }).then(res => this._checkResponse(res))
+    }).then((res) => {
+      return this._checkResponse(res);
+    })
   }
   checkToken (jwt) {
     return fetch(`${this.baseUrl}/users/me`, {
@@ -28,7 +32,9 @@ class Auth {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${jwt}`
       }
-    }).then(res => this._checkResponse(res))
+    }).then((res) => {
+      return this._checkResponse(res);
+    })
   }
   _checkResponse(res) {
     if (res.ok) {

@@ -52,7 +52,7 @@ function App() {
           navigate('/', {replace: true})
         }
       })
-      .catch(err => console.error)
+      .catch(console.error)
     }
   }, [])
 
@@ -111,14 +111,15 @@ function App() {
       if(res) {
         setInfoPopupIcon(successIcon)
         setInfoPopupTitle('Вы успешно зарегистрировались!')
-        handleInfoPopupOpen(true)
-      } else {
-        setInfoPopupIcon(deniedIcon)
-        setInfoPopupTitle('Что-то пошло не так! Попробуйте ещё раз.')
-        handleInfoPopupOpen(true)
       }
     })
-    .catch(err => console.error)
+    .catch((res) => {
+      setInfoPopupIcon(deniedIcon)
+      setInfoPopupTitle('Что-то пошло не так! Попробуйте ещё раз.')
+    })
+    .finally(() => {
+      handleInfoPopupOpen(true)
+    })
   }
 
   function handleLogin({password, email}) {
@@ -128,13 +129,13 @@ function App() {
         setLoggedIn(true)
         setEmail(email)
         navigate('/', {replace: true})
-      } else {
-        setInfoPopupIcon(deniedIcon)
-        setInfoPopupTitle('Что-то пошло не так! Попробуйте ещё раз.')
-        handleInfoPopupOpen(true)
       }
     })
-    .catch(err => console.error)
+    .catch(() => {
+      setInfoPopupIcon(deniedIcon)
+      setInfoPopupTitle('Что-то пошло не так! Попробуйте ещё раз.')
+      handleInfoPopupOpen(true)
+    })
   }
 
   function handleQuit () {
